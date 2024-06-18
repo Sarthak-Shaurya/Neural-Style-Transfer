@@ -21,7 +21,7 @@ Pillow==9.2.0</h4>
   Usage
 </h2>
 <h4> 
-  ## Style Transfer App
+
 
 This Flask application performs neural style transfer on images. Here's how to use it:
 
