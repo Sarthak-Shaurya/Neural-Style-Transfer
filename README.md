@@ -27,13 +27,13 @@ This Flask application performs neural style transfer on images. Here's how to u
 
 ###  Using the App
 
-1.  **Clone the repository:**
+1.  **Clone the repository**
 
-2. **Install dependencies:**
+2. **Install dependencies**
 
 3. **Run the application:**
 python app.py
-4. **Access the application:**
+4. **Access the application**
 
 Open your web browser and visit http://127.0.0.1:5000/ (or localhost:5000 if you're on your local machine).
 
@@ -42,7 +42,7 @@ Open your web browser and visit http://127.0.0.1:5000/ (or localhost:5000 if you
 * Click "Choose File" and select both a content image and a style image.
 * Click "Upload".
 
-6. **View the results:**
+6. **View the results**
 
 </h4>
 <h2>References</h2>
