@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Neural Style Transfer</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>Neural Style Transfer</h1>
+        </header>
+        <main>
+            <section class="intro">
+                <h2>Welcome to the Neural Style Transfer Playground!</h2>
+                <p>Ready to unleash your inner artist? This web interface lets you create stunning images using the power of neural style transfer.</p>
+                <h3>What is Neural Style Transfer?</h3>
+                <p>Neural style transfer is a cutting-edge technique that combines the content of one image (the "content image") with the artistic style of another (the "style image"). Imagine taking a picture of your pet and transforming it into a masterpiece reminiscent of Van Gogh!</p>
+                <h3>Here's How it Works:</h3>
+                <ul>
+                    <li><strong>Upload your images:</strong> Select your content image (what you want the artwork to depict) and the style image (the artistic style you want to apply).</li>
+                    <li><strong>Click "Submit":</strong> Watch the magic unfold! The image will be generated progressively, with snapshots displayed at key points throughout the process: 0th epoch (starting point), 250th epoch, 500th epoch, and so on, until the final masterpiece is revealed at the 2500th epoch.</li>
+                </ul>
+                <h3>Witness the Transformation:</h3>
+                <p>As the epochs progress, you'll see the content of your image (shapes, objects) gradually merge with the chosen artistic style. Get ready to be amazed at the final result!</p>
+                <h3>Tips:</h3>
+                <ul>
+                    <li>Experiment with different content and style image combinations for unique results.</li>
+                    <li>The style transfer process can take some time depending on your images and processing power. Be patient, the wait will be worth it!</li>
+                </ul>
+                <p>Let's get creative! Upload your images and embark on a journey of artistic exploration.</p>
+            </section>
+            <section class="upload-form">
+                <form id="uploadForm" enctype="multipart/form-data" method="POST">
+                    <label for="content_image">Content Image:</label>
+                    <input type="file" id="content_image" name="content_image" required><br><br>
+                    <label for="style_image">Style Image:</label>
+                    <input type="file" id="style_image" name="style_image" required><br><br>
+                    <button type="submit">Submit</button>
+                </form>
+            </section>
+            <section id="output">
+                <h2>Generated Image:</h2>
+                <img id="generated_image" src="" alt="Generated Image will appear here">
+            </section>
+        </main>
+    </div>
+    <script>
+        const form = document.getElementById('uploadForm');
+        form.addEventListener('submit', function(e) {
+            e.preventDefault();
+            const formData = new FormData(form);
+            fetch('/', {
+                method: 'POST',
+                body: formData
+            }).then(response => {
+                if (response.ok) {
+                    const eventSource = new EventSource('/stream');
+                    eventSource.addEventListener('epoch', function(event) {
+                        const imagePath = event.data;
+                        document.getElementById('generated_image').src = imagePath;
+                    });
+                }
+            });
+        });
+    </script>
+</body>
+</html>

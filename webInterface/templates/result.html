@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Neural Style Transfer Result</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            text-align: center;
+        }
+        #output {
+            margin-top: 20px;
+        }
+        img {
+            max-width: 100%;
+            height: auto;
+        }
+    </style>
+</head>
+<body>
+    <h1>Neural Style Transfer Result</h1>
+    <div id="output">
+        <h2>Generated Image:</h2>
+        <img id="generated_image" src="" alt="Generated Image will appear here">
+    </div>
+    <script>
+        const eventSource = new EventSource('/stream');
+        eventSource.addEventListener('epoch', function(event) {
+            const imagePath = event.data;
+            document.getElementById('generated_image').src = imagePath;
+        });
+    </script>
+</body>
+</html>
