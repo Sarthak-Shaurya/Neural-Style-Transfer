@@ -48,7 +48,7 @@ Open your web browser and visit http://127.0.0.1:5000/ (or localhost:5000 if you
 <h2>References</h2>
 <h4> •	Coursera Deep Learning Course- Module on CNN- Significant inspiration has been taken from this resource.<br>
 •	Gatys, L. A., Ecker, A. S., & Bethge, M. (2016). A neural algorithm of artistic style transfer. arXiv preprint arXiv:1605.08807. https://arxiv.org/abs/1605.08807<br>
-•	Johnson, J., Alahi, A., & Fei-Fei, L. (2016). Perceptual losses for image counter-fitting. arXiv preprint arXiv:1603.08175. [http://arxiv.org/abs/1603.08155](http://arxiv.org/abs/1603.08155<br>
+•	Johnson, J., Alahi, A., & Fei-Fei, L. (2016). Perceptual losses for image counter-fitting. arXiv preprint arXiv:1603.08175. http://arxiv.org/abs/1603.08155<br>
 •	Huang, X., & Belongie, S. (2017). Arbitrary Style Transfer in Real-time with Adaptive Instance Normalization. https://arxiv.org/pdf/1703.06868.pdf<br>
 •	Ghiasi, G. , Lee, H., Kudlur, M. et. al. (2017). Exploring the structure of a real-time, arbitrary neural artistic stylization network. https://arxiv.org/pdf/1705.06830.pdf<br>
 </h4>
