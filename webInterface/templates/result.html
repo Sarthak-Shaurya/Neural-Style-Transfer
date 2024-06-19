@@ -21,13 +21,17 @@
     <h1>Neural Style Transfer Result</h1>
     <div id="output">
         <h2>Generated Image:</h2>
+        <p id="epoch_info"></p>
         <img id="generated_image" src="" alt="Generated Image will appear here">
     </div>
     <script>
         const eventSource = new EventSource('/stream');
         eventSource.addEventListener('epoch', function(event) {
-            const imagePath = event.data;
+            const data = event.data.split(', epoch: ');
+            const imagePath = data[0];
+            const epochNumber = data[1];
             document.getElementById('generated_image').src = imagePath;
+            document.getElementById('epoch_info').textContent = `Epoch: ${epochNumber}`;
         });
     </script>
 </body>
