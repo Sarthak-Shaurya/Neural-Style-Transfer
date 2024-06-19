@@ -2,6 +2,8 @@
 <h2>Introduction</h2>
 <h4>Neural Style Transfer (NST) is a captivating technique in computer vision that allows for the creation of novel images by combining one image's content with another's artistic style. Imagine transforming a photograph of your family vacation into a masterpiece reminiscent of Van Gogh's vibrant brushstrokes! This project delves into the world of NST, aiming to construct a system capable of achieving such creative image manipulation.!
 </h4>
+<h2>Project Overview</h2>
+<h4>This code implements a neural style transfer algorithm. It takes a content image and a style image as input and generates an image that combines the content of the content image with the style of the style image. The code first defines a number of helper functions, including functions for preprocessing images, calculating content and style loss, and computing the total loss. Then, it defines a training function that uses a gradient tape to compute gradients and update the generated image iteratively. Finally, it defines a style transfer function that orchestrates the entire style transfer process.</h4>
 <h2>Dependencies</h2>
 <h4>Flask==2.1.3<br>
 tensorflow==2.9.1 <br>
