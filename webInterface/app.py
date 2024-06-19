@@ -106,27 +106,34 @@ def training_function(generated_image, content_features, style_features, STYLE_L
     generated_image.assign(clip_image(generated_image))
     return total_loss
 
+
 def style_transfer(content_path, style_path, epochs):
     content_image = preprocess_image(content_path, img_size)
     style_image = preprocess_image(style_path, img_size)
     output_vgg = get_layer_outputs(vgg_model, STYLE_LAYERS + [('block5_conv4', 1)])
     content_target = output_vgg(content_image)
     style_target = output_vgg(style_image)
+
+    # Create tf.Variable outside of the loop
     ppdcontent = tf.Variable(tf.image.convert_image_dtype(content_image, tf.float32))
-    content_features = output_vgg(ppdcontent)
     ppdstyle = tf.Variable(tf.image.convert_image_dtype(style_image, tf.float32))
+
+    content_features = output_vgg(ppdcontent)
     style_features = output_vgg(ppdstyle)
     optimizer = tf.keras.optimizers.Adam(learning_rate=0.01)
     generated_image = initialize_generated_image(content_image)
     generated_image = tf.Variable(generated_image)
+
     for i in range(epochs):
-        total_loss = training_function(generated_image, content_features, style_features, STYLE_LAYERS, optimizer, output_vgg)
+        total_loss = training_function(generated_image, content_features, style_features, STYLE_LAYERS, optimizer,
+                                       output_vgg)
         if i % 250 == 0:
             print(f"Epoch {i}, Loss: {total_loss.numpy()}")
             epoch_output_path = os.path.join('static', f'generated_image_epoch_{i}.jpg')
             generated_image_np = tensor_to_img(generated_image)
             generated_image_np.save(epoch_output_path)
-            yield f"data: /static/generated_image_epoch_{i}.jpg\nevent: epoch\n\n"
+            yield f"data: /static/generated_image_epoch_{i}.jpg, epoch: {i}\nevent: epoch\n\n"
+
 
 @app.route('/', methods=['GET', 'POST'])
 def upload_image():
@@ -157,4 +164,3 @@ if __name__ == '__main__':
     if not os.path.exists('static'):
         os.makedirs('static')
     app.run(debug=True)
-
