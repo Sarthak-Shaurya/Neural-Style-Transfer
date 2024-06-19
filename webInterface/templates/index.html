@@ -39,10 +39,6 @@
                     <button type="submit">Submit</button>
                 </form>
             </section>
-            <section id="output">
-                <h2>Generated Image:</h2>
-                <img id="generated_image" src="" alt="Generated Image will appear here">
-            </section>
         </main>
     </div>
     <script>
@@ -55,11 +51,7 @@
                 body: formData
             }).then(response => {
                 if (response.ok) {
-                    const eventSource = new EventSource('/stream');
-                    eventSource.addEventListener('epoch', function(event) {
-                        const imagePath = event.data;
-                        document.getElementById('generated_image').src = imagePath;
-                    });
+                    window.location.href = '/result';
                 }
             });
         });
